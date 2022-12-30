@@ -51,9 +51,10 @@ def _estimate_(driver):
     WebDriverWait(driver , 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="root"]/div/div[2]/div/div/div/main/div/div[2]/div/div[1]/div/div[1]/div[2]/div/div/div[2]/button'))).click() # save-and-share
     print(WebDriverWait(driver , 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="root"]/div/div[2]/div/div/div/main/div/div[2]/div/div[1]/div/div[1]/div[2]/div/div/div[2]/button'))).text)
     WebDriverWait(driver , 10).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[4]/div/div[2]/div/div/div[3]/span/span/button[2]'))).click() # agree-continue    
-    time.sleep(2)
+    time.sleep(3)
     # WebDriverWait(driver , 10).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[4]/div/div[2]/div/div/div[2]/section/div/div/div[2]/div/span/button'))).click() # agree-continue
     link = WebDriverWait(driver , 10).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[4]/div/div[2]/div/div/div[2]/section/div/div/div[2]/div/div[1]/input'))).get_attribute('value') # agree-continue
+    print(link)
     return link
     
 
@@ -67,8 +68,10 @@ if __name__ == "__main__":
         _configure_EC2(driver, i)
     link = _estimate_(driver)
     driver.quit()
+    print(link)
 
     # link = clipboard.paste()
-    f = open('estimate link.txt', 'w')
+    f = open('estimate link.txt', 'a')
     f.write(link)
+    f.write('\n')
     f.close()
